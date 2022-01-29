@@ -12,12 +12,94 @@
   background-color: pink;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .PersonList {
   height: 80vh;
   width: 70vw;
-  background-color: blue;
+  max-width: 900px;
+  background-image: linear-gradient(rgb(97, 212, 246), rgb(218, 205, 253));
   margin-left: auto;
   margin-right: auto;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+  margin-top: 4vh;
+}
+
+.HeaderContainer {
+  width: 60vw;
+  height: 5vh;
+  min-width: 300px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.LastNameHeader {
+  flex: 2;
+  text-align: left;
+  margin-left: 2vw;
+}
+
+.FirstNameHeader {
+  flex: 2;
+  text-align: left;
+}
+
+.AgeHeader {
+  flex: 1;
+  position: relative;
+  right: 2vw;
+}
+
+.Person {
+  width: 60vw;
+  height: 5vh;
+  min-width: 300px;
+  max-width: 600px;
+  background-color: rgb(183, 248, 232);
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  border-radius: 10px;
+  font-size: large;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
+    0 0 0 0 rgba(232, 240, 128, 0.007);
+  margin-top: 2vh;
+}
+
+.Person:hover {
+  transform: scale(0.98);
+}
+.LastName {
+  flex: 2;
+  text-align: left;
+  margin-left: 2vw;
+}
+
+.FirstName {
+  flex: 2;
+  text-align: left;
+}
+
+.Age {
+  flex: 1;
+  position: relative;
+  right: 2vw;
 }

@@ -16,11 +16,13 @@ export const Persons: React.FunctionComponent<{}> = () => {
 
       var mapped = response.data.map(({ LastName, FirstName, Age }) => (
         <div
-          className="Words"
+          className="Person"
           title="Klikkaa muokataksesi tai poistaaksesi sana"
           onClick={() => console.log("click")}
         >
-          {LastName + " - " + FirstName}
+          <span className="LastName">{LastName}</span>
+          <span className="FirstName">{FirstName}</span>
+          <span className="Age">{Age}</span>
         </div>
       ));
 
@@ -32,5 +34,16 @@ export const Persons: React.FunctionComponent<{}> = () => {
   useEffect(() => {
     fetchAll();
   }, []);
-  return <div className="PersonList">{persons}</div>;
+  return (
+    <div className="PersonList">
+      <div className="HeaderContainer">
+        {" "}
+        <span className="LastNameHeader">Sukunimi</span>
+        <span className="FirstNameHeader">Etunimi</span>
+        <span className="AgeHeader">Ikä</span>
+      </div>
+
+      {persons}
+    </div>
+  );
 };
