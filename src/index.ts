@@ -3,7 +3,10 @@ import express, { Request, Response, Application } from "express";
 const app: Application = express();
 const port = 3000;
 
-app.get("/", (req: Request, res: Response): void => {
+app.use(express.static("src/frontend/build"));
+app.use(express.json());
+
+app.get("/persons", (req: Request, res: Response): void => {
   res.send("Hello Typescript with Node.js!");
 });
 
