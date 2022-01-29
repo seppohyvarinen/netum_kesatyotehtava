@@ -1,3 +1,23 @@
 .App {
   text-align: center;
+  height: 100vh;
+
+  background-image: linear-gradient(rgb(131, 240, 250), rgb(218, 205, 253));
+  overflow: scroll;
+}
+
+.controlPanel {
+  height: 20vh;
+  width: 80vw;
+  background-color: pink;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.PersonList {
+  height: 80vh;
+  width: 70vw;
+  background-color: blue;
+  margin-left: auto;
+  margin-right: auto;
 }
