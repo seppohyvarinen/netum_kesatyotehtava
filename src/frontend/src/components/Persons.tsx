@@ -1,12 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const Persons: React.FunctionComponent<{}> = () => {
+  const [persons, setPersons] = useState<any>([]);
+
+  interface Person {
+    LastName: string;
+    FirstName: string;
+    Age: number;
+  }
+
   const fetchAll = async () => {
     try {
-      var response = await axios.get("/persons");
+      var response = await axios.get<Person[]>("/persons");
 
-      console.log(response.data);
+      var mapped = response.data.map(({ LastName, FirstName, Age }) => (
+        <div
+          className="Words"
+          title="Klikkaa muokataksesi tai poistaaksesi sana"
+          onClick={() => console.log("click")}
+        >
+          {LastName + " - " + FirstName}
+        </div>
+      ));
+
+      setPersons(mapped);
     } catch (error) {
       alert(error);
     }
@@ -14,5 +32,5 @@ export const Persons: React.FunctionComponent<{}> = () => {
   useEffect(() => {
     fetchAll();
   }, []);
-  return <div className="PersonList">Here are the persons</div>;
+  return <div className="PersonList">{persons}</div>;
 };
