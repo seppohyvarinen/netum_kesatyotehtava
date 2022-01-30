@@ -1,8 +1,8 @@
 export const Modal: React.FunctionComponent<{}> = () => {
   return (
-    <div className="ModalBG">
+    <div className="modalBG">
       <div className="Modal">
-        <button>X</button>
+        <button className="exitBtn">X</button>
       </div>
     </div>
   );

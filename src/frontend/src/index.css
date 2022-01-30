@@ -136,7 +136,9 @@
 
 .Modal {
   width: 40vw;
+  max-width: 500px;
   height: 60vh;
+  min-height: 300px;
   min-width: 350px;
   border-radius: 20px;
   background-color: rgb(255, 227, 254);
@@ -146,6 +148,9 @@
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset;
+}
+.Modal .exitBtn {
+  float: right;
 }
 
 @media only screen and (max-width: 480px) {
