@@ -39,7 +39,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
   }, []);
   return (
     <>
-      {modalOpen && <Modal />}
+      {modalOpen && <Modal setModalOpen={setModalOpen} />}
       <ControlPanel setModalOpen={setModalOpen} />
       <div className="PersonList">
         <div className="HeaderContainer">
