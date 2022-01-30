@@ -9,7 +9,7 @@ export const ControlPanel: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <div className="ControlPanel">
-      <button onClick={() => setModalOpen(true)}>Lisää</button>
+      <button onClick={() => setModalOpen(true)}>Lisää uusi henkilö</button>
       <select>
         <option value="" disabled selected>
           Järjestä...
