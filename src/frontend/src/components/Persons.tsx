@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ControlPanel } from "./ControlPanel";
 
 export const Persons: React.FunctionComponent<{}> = () => {
   const [persons, setPersons] = useState<any>([]);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   interface Person {
     LastName: string;
@@ -35,15 +37,18 @@ export const Persons: React.FunctionComponent<{}> = () => {
     fetchAll();
   }, []);
   return (
-    <div className="PersonList">
-      <div className="HeaderContainer">
-        {" "}
-        <span className="LastNameHeader">Sukunimi</span>
-        <span className="FirstNameHeader">Etunimi</span>
-        <span className="AgeHeader">Ikä</span>
-      </div>
+    <>
+      <ControlPanel setModalOpen={setModalOpen} />
+      <div className="PersonList">
+        <div className="HeaderContainer">
+          {" "}
+          <span className="LastNameHeader">Sukunimi</span>
+          <span className="FirstNameHeader">Etunimi</span>
+          <span className="AgeHeader">Ikä</span>
+        </div>
 
-      {persons}
-    </div>
+        {persons}
+      </div>
+    </>
   );
 };
