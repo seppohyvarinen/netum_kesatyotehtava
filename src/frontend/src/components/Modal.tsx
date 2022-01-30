@@ -5,6 +5,10 @@ interface Props {
 }
 
 export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
+  const [lastName, setLastName] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [age, setAge] = useState<number>();
+
   return (
     <div className="modalBG">
       <div className="Modal">
