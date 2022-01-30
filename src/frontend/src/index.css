@@ -9,9 +9,10 @@
   font-family: "Volkhov", serif;
 }
 
-.controlPanel {
+.headerPanel {
   height: 20vh;
   width: 80vw;
+  min-height: 100px;
   background-color: rgb(253, 184, 232);
   margin-left: auto;
   margin-right: auto;
@@ -21,6 +22,16 @@
     rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
     rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
   border-radius: 20px;
+  display: grid;
+  place-items: center;
+  margin-top: 10px;
+}
+
+.headerPanel h1 {
+  text-align: left;
+  font-size: xx-large;
+  text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+    0px -4px 10px rgba(255, 255, 255, 0.3);
 }
 
 .PersonList {
@@ -51,25 +62,25 @@
   align-items: center;
 }
 .LastNameHeader {
-  flex: 2;
+  flex: 4;
   text-align: left;
   margin-left: 2vw;
 }
 
 .FirstNameHeader {
-  flex: 2;
+  flex: 3;
   text-align: left;
 }
 
 .AgeHeader {
-  flex: 1;
+  flex: 2;
   position: relative;
   right: 2vw;
 }
 
 .Person {
   width: 60vw;
-  height: 5vh;
+  height: 8vh;
   min-width: 300px;
   max-width: 600px;
   background-color: rgb(145, 255, 227);
@@ -80,7 +91,7 @@
   flex: 1;
   align-items: center;
   border-radius: 10px;
-  font-size: large;
+  font-size: medium;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
@@ -92,18 +103,47 @@
   transform: scale(0.98);
 }
 .LastName {
-  flex: 2;
+  flex: 4;
   text-align: left;
   margin-left: 2vw;
 }
 
 .FirstName {
-  flex: 2;
+  flex: 3;
   text-align: left;
 }
 
 .Age {
-  flex: 1;
+  flex: 2;
   position: relative;
   right: 2vw;
+}
+
+@media only screen and (max-width: 480px) {
+  .Person {
+    min-width: 250px;
+    font-size: small;
+    height: 6vh;
+  }
+  .HeaderContainer {
+    min-width: 250px;
+    font-size: small;
+  }
+
+  .PanelContainer h1 {
+    font-size: large;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .Person {
+    min-width: 200px;
+  }
+  .HeaderContainer {
+    min-width: 200px;
+  }
+
+  .PanelContainer h1 {
+    font-size: medium;
+  }
 }
