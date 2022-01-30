@@ -1,3 +1,9 @@
 export const Modal: React.FunctionComponent<{}> = () => {
-  return <div className="Modal"></div>;
+  return (
+    <div className="ModalBG">
+      <div className="Modal">
+        <button>X</button>
+      </div>
+    </div>
+  );
 };
