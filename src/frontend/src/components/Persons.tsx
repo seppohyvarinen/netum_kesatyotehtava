@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ControlPanel } from "./ControlPanel";
+import { Modal } from "./Modal";
 
 export const Persons: React.FunctionComponent<{}> = () => {
   const [persons, setPersons] = useState<any>([]);
@@ -38,6 +39,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
   }, []);
   return (
     <>
+      {modalOpen && <Modal />}
       <ControlPanel setModalOpen={setModalOpen} />
       <div className="PersonList">
         <div className="HeaderContainer">
