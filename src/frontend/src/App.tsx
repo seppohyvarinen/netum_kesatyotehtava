@@ -1,11 +1,11 @@
 import React from "react";
-import { FunctionPanel } from "./components/ControlPanel";
+import { HeaderPanel } from "./components/HeaderPanel";
 import { Persons } from "./components/Persons";
 
 function App() {
   return (
     <div className="App">
-      <FunctionPanel />
+      <HeaderPanel />
       <Persons />
     </div>
   );
