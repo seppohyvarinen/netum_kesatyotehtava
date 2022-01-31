@@ -59,6 +59,10 @@ export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
             <input type={"number"} onChange={handleAge} value={age}></input>
           </div>
         </div>
+        <div className="ModalBtns">
+          <button>Lisää</button>
+          <button>Peruuta</button>
+        </div>
       </div>
     </div>
   );

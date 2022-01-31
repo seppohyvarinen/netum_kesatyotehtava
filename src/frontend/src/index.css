@@ -162,11 +162,12 @@
 .Modal {
   width: 40vw;
   max-width: 350px;
-  height: 60vh;
-  min-height: 300px;
+  height: 50vh;
+  min-height: 500px;
+
   min-width: 350px;
   border-radius: 20px;
-  background-color: rgb(255, 227, 254);
+  background-image: linear-gradient(rgb(176, 240, 246), rgb(218, 205, 253));
 
   margin-left: auto;
   margin-right: auto;
@@ -189,15 +190,21 @@
 .EditInputs {
   width: 20%;
   height: 30%;
-  margin-top: 30px;
+  margin-top: 5vh;
   margin-left: 20%;
-}
-.EditInputs {
-  margin-top: 50px;
 }
 
 .InputRow {
   margin-top: 25px;
+}
+
+.ModalBtns {
+  margin-top: 120px;
+  width: 160px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 480px) {
