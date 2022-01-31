@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/seppohyvarinen/netum_kesatyotehtava#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.13",
     "nodemon": "^2.0.15",

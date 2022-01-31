@@ -1,4 +1,5 @@
 import { useState, Dispatch, SetStateAction } from "react";
+import axios from "axios";
 
 interface Props {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -25,8 +26,22 @@ export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
     console.log(age);
   };
 
-  const handleSubmit = () => {
-    setModalOpen(false);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      await axios.post("/persons", {
+        FirstName: firstName,
+        LastName: lastName,
+        Age: age,
+      });
+      setFirstName("");
+      setLastName("");
+      setAge(0);
+      setModalOpen(false);
+      window.location.reload();
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -39,7 +54,7 @@ export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
           <h3>{message}</h3>
         </div>
 
-        <form onSubmit={() => handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className="EditInputs">
             <div className="InputRow">
               {" "}

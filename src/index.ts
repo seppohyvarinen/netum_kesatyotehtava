@@ -2,8 +2,12 @@ import express, { Request, Response, Application } from "express";
 
 import Connections from "./connections/connections";
 
+import cors from "cors";
+
 const app: Application = express();
 const port = 3000;
+
+app.use(cors());
 
 app.use(express.static("src/frontend/build"));
 app.use(express.json());
@@ -18,7 +22,7 @@ app.get("/persons", async (req: Request, res: Response): Promise<any> => {
   }
 });
 
-app.post("/", async (req: Request, res: Response): Promise<any> => {
+app.post("/persons", async (req: Request, res: Response): Promise<any> => {
   let tmp = req.body;
 
   try {
