@@ -25,6 +25,25 @@ let Connections = {
         }
       });
     }),
+  save: (person: { LastName: string; FirstName: string; Age: number }) =>
+    new Promise((resolve, reject) => {
+      console.log("inside sql query");
+      var sql =
+        "insert into Persons (LastName, FirstName, Age) values (" +
+        pool.escape(person.LastName) +
+        ", " +
+        pool.escape(person.FirstName) +
+        ", " +
+        pool.escape(person.Age) +
+        ")";
+      pool.query(sql, (err) => {
+        if (err) {
+          reject("Something went wrong with saving, please try again");
+        } else {
+          resolve("SAVED SUCCESFULLY: ");
+        }
+      });
+    }),
 };
 
 export default Connections;

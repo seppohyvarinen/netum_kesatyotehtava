@@ -18,6 +18,19 @@ app.get("/persons", async (req: Request, res: Response): Promise<any> => {
   }
 });
 
+app.post("/", async (req: Request, res: Response): Promise<any> => {
+  let tmp = req.body;
+
+  try {
+    let save = await Connections.save(tmp);
+    res.statusCode = 201;
+    res.send(save);
+  } catch (error) {
+    res.statusCode = 400;
+    res.send(`${res.statusCode} Bad Request: ${error}`);
+  }
+});
+
 const server = app.listen(port, (): void => {
   console.log(`Server Running here 👉 https://localhost:${port}`);
 });

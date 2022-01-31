@@ -25,6 +25,10 @@ export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
     console.log(age);
   };
 
+  const handleSubmit = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="modalBG">
       <div className="Modal">
@@ -34,35 +38,38 @@ export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
         <div className="ModalHeader">
           <h3>{message}</h3>
         </div>
-        <div className="EditInputs">
-          <div className="InputRow">
-            {" "}
-            Sukunimi
-            <input
-              type={"text"}
-              onChange={handleLastName}
-              value={lastName}
-            ></input>
+
+        <form onSubmit={() => handleSubmit}>
+          <div className="EditInputs">
+            <div className="InputRow">
+              {" "}
+              Sukunimi
+              <input
+                type={"text"}
+                onChange={handleLastName}
+                value={lastName}
+              ></input>
+            </div>
+            <div className="InputRow">
+              {" "}
+              Etunimi
+              <input
+                type={"text"}
+                onChange={handleFirstName}
+                value={firstName}
+              ></input>
+            </div>
+            <div className="InputRow">
+              {" "}
+              Ikä
+              <input type={"number"} onChange={handleAge} value={age}></input>
+            </div>
           </div>
-          <div className="InputRow">
-            {" "}
-            Etunimi
-            <input
-              type={"text"}
-              onChange={handleFirstName}
-              value={firstName}
-            ></input>
+          <div className="ModalBtns">
+            <button type="submit">Lisää</button>
+            <button onClick={() => setModalOpen(false)}>Peruuta</button>
           </div>
-          <div className="InputRow">
-            {" "}
-            Ikä
-            <input type={"number"} onChange={handleAge} value={age}></input>
-          </div>
-        </div>
-        <div className="ModalBtns">
-          <button>Lisää</button>
-          <button>Peruuta</button>
-        </div>
+        </form>
       </div>
     </div>
   );
