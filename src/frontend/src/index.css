@@ -161,7 +161,7 @@
 
 .Modal {
   width: 40vw;
-  max-width: 500px;
+  max-width: 350px;
   height: 60vh;
   min-height: 300px;
   min-width: 350px;
@@ -176,6 +176,28 @@
 }
 .Modal .exitBtn {
   float: right;
+}
+
+.ModalHeader h3 {
+  font-size: x-large;
+  text-align: center;
+  position: relative;
+  top: 20px;
+  left: 10px;
+}
+
+.EditInputs {
+  width: 20%;
+  height: 30%;
+  margin-top: 30px;
+  margin-left: 20%;
+}
+.EditInputs {
+  margin-top: 50px;
+}
+
+.InputRow {
+  margin-top: 25px;
 }
 
 @media only screen and (max-width: 480px) {

@@ -8,6 +8,9 @@ export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
   const [lastName, setLastName] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [age, setAge] = useState<number>();
+  const [message, setMessage] = useState<string>(
+    "Lisää uusi henkilö tietokantaan"
+  );
 
   const handleLastName = (e: React.FormEvent<HTMLInputElement>) => {
     setLastName(e.currentTarget.value);
@@ -28,14 +31,34 @@ export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
         <button className="exitBtn" onClick={() => setModalOpen(false)}>
           X
         </button>
-
-        <input type={"text"} onChange={handleLastName} value={lastName}></input>
-        <input
-          type={"text"}
-          onChange={handleFirstName}
-          value={firstName}
-        ></input>
-        <input type={"number"} onChange={handleAge} value={age}></input>
+        <div className="ModalHeader">
+          <h3>{message}</h3>
+        </div>
+        <div className="EditInputs">
+          <div className="InputRow">
+            {" "}
+            Sukunimi
+            <input
+              type={"text"}
+              onChange={handleLastName}
+              value={lastName}
+            ></input>
+          </div>
+          <div className="InputRow">
+            {" "}
+            Etunimi
+            <input
+              type={"text"}
+              onChange={handleFirstName}
+              value={firstName}
+            ></input>
+          </div>
+          <div className="InputRow">
+            {" "}
+            Ikä
+            <input type={"number"} onChange={handleAge} value={age}></input>
+          </div>
+        </div>
       </div>
     </div>
   );
