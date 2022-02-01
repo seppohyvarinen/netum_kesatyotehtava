@@ -5,7 +5,12 @@ import { Modal } from "./Modal";
 
 export const Persons: React.FunctionComponent<{}> = () => {
   const [persons, setPersons] = useState<any>([]);
+
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [edit, setEdit] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>(
+    "Lisää uusi henkilö tietokantaan"
+  );
 
   interface Person {
     LastName: string;
@@ -17,29 +22,42 @@ export const Persons: React.FunctionComponent<{}> = () => {
     try {
       var response = await axios.get<Person[]>("/persons");
 
-      var mapped = response.data.map(({ LastName, FirstName, Age }) => (
-        <div
-          className="Person"
-          title="Klikkaa muokataksesi tai poistaaksesi sana"
-          onClick={() => console.log("click")}
-        >
-          <span className="LastName">{LastName}</span>
-          <span className="FirstName">{FirstName}</span>
-          <span className="Age">{Age}</span>
-        </div>
-      ));
+      var temp: any = [];
 
-      setPersons(mapped);
+      response.data.forEach(({ LastName, FirstName, Age }) =>
+        temp.push({ LastName: LastName, FirstName: FirstName, Age: Age })
+      );
+
+      setPersons(temp);
     } catch (error) {
       alert(error);
     }
+  };
+
+  const renderPersons = persons.map((person: Person) => (
+    <div
+      className="Person"
+      title="Klikkaa muokataksesi tai poistaaksesi sana"
+      onClick={() => console.log("click")}
+    >
+      <span className="LastName">{person.LastName}</span>
+      <span className="FirstName">{person.FirstName}</span>
+      <span className="Age">{person.Age}</span>
+    </div>
+  ));
+
+  const initializeEdit = (LastName: string, FirstName: string, Age: number) => {
+    setMessage("Muokkaa tietoja: ");
+    setEdit(true);
   };
   useEffect(() => {
     fetchAll();
   }, []);
   return (
     <>
-      {modalOpen && <Modal setModalOpen={setModalOpen} />}
+      {modalOpen && (
+        <Modal message={message} edit={edit} setModalOpen={setModalOpen} />
+      )}
       <ControlPanel setModalOpen={setModalOpen} />
       <div className="PersonList">
         <div className="HeaderContainer">
@@ -49,7 +67,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
           <span className="AgeHeader">Ikä</span>
         </div>
 
-        {persons}
+        {renderPersons}
       </div>
     </>
   );

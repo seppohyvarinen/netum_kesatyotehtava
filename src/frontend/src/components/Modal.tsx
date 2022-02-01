@@ -3,15 +3,18 @@ import axios from "axios";
 
 interface Props {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
+  edit: boolean;
+  message: string;
 }
 
-export const Modal: React.FunctionComponent<Props> = ({ setModalOpen }) => {
+export const Modal: React.FunctionComponent<Props> = ({
+  setModalOpen,
+  edit,
+  message,
+}) => {
   const [lastName, setLastName] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [age, setAge] = useState<number>();
-  const [message, setMessage] = useState<string>(
-    "Lisää uusi henkilö tietokantaan"
-  );
 
   const handleLastName = (e: React.FormEvent<HTMLInputElement>) => {
     setLastName(e.currentTarget.value);
