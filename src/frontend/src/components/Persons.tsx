@@ -38,7 +38,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
     <div
       className="Person"
       title="Klikkaa muokataksesi tai poistaaksesi sana"
-      onClick={() => console.log("click")}
+      onClick={() => initializeEdit(person)}
     >
       <span className="LastName">{person.LastName}</span>
       <span className="FirstName">{person.FirstName}</span>
@@ -46,7 +46,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
     </div>
   ));
 
-  const initializeEdit = (LastName: string, FirstName: string, Age: number) => {
+  const initializeEdit = (person: Person) => {
     setMessage("Muokkaa tietoja: ");
     setEdit(true);
   };
@@ -56,8 +56,14 @@ export const Persons: React.FunctionComponent<{}> = () => {
   return (
     <>
       {modalOpen && (
-        <Modal message={message} edit={edit} setModalOpen={setModalOpen} />
+        <Modal
+          message={message}
+          edit={edit}
+          setModalOpen={setModalOpen}
+          fetchAll={fetchAll}
+        />
       )}
+
       <ControlPanel setModalOpen={setModalOpen} />
       <div className="PersonList">
         <div className="HeaderContainer">

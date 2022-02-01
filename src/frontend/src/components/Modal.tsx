@@ -5,12 +5,14 @@ interface Props {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
   edit: boolean;
   message: string;
+  fetchAll: () => void;
 }
 
 export const Modal: React.FunctionComponent<Props> = ({
   setModalOpen,
   edit,
   message,
+  fetchAll,
 }) => {
   const [lastName, setLastName] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -41,7 +43,7 @@ export const Modal: React.FunctionComponent<Props> = ({
       setLastName("");
       setAge(0);
       setModalOpen(false);
-      window.location.reload();
+      fetchAll();
     } catch (error) {
       alert(error);
     }
