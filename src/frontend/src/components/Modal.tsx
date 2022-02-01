@@ -1,28 +1,20 @@
 import { useState, Dispatch, SetStateAction } from "react";
 import axios from "axios";
 
-import Person from "../Interfaces";
-
 interface Props {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
-  edit: boolean;
-  setEdit: Dispatch<SetStateAction<boolean>>;
   message: string;
   fetchAll: () => void;
-  person: Person;
 }
 
 export const Modal: React.FunctionComponent<Props> = ({
   setModalOpen,
-  edit,
-  setEdit,
   message,
   fetchAll,
-  person,
 }) => {
-  const [lastName, setLastName] = useState<string>(person.LastName);
-  const [firstName, setFirstName] = useState<string>(person.FirstName);
-  const [age, setAge] = useState<number>(person.Age);
+  const [lastName, setLastName] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [age, setAge] = useState<number>();
 
   const handleLastName = (e: React.FormEvent<HTMLInputElement>) => {
     setLastName(e.currentTarget.value);
@@ -58,17 +50,14 @@ export const Modal: React.FunctionComponent<Props> = ({
   return (
     <div className="modalBG">
       <div className="Modal">
-        <button
-          className="exitBtn"
-          onClick={() => (edit ? setEdit(false) : setModalOpen(false))}
-        >
+        <button className="exitBtn" onClick={() => setModalOpen(false)}>
           X
         </button>
         <div className="ModalHeader">
           <h3>{message}</h3>
         </div>
 
-        <form onSubmit={(e) => (edit ? console.log("what") : handleSubmit(e))}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className="EditInputs">
             <div className="InputRow">
               {" "}
