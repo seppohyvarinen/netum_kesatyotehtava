@@ -35,7 +35,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
   };
 
   const renderPersons = persons.map((person: Person) => (
-    <div
+    <span
       className="Person"
       title="Klikkaa muokataksesi tai poistaaksesi sana"
       onClick={() => initializeEdit(person)}
@@ -43,7 +43,15 @@ export const Persons: React.FunctionComponent<{}> = () => {
       <span className="LastName">{person.LastName}</span>
       <span className="FirstName">{person.FirstName}</span>
       <span className="Age">{person.Age}</span>
-    </div>
+      <span className="EditButton">
+        <button>
+          <i className="fa fa-pencil"></i>{" "}
+        </button>
+      </span>
+      <span className="DeleteButton">
+        <button>X</button>
+      </span>
+    </span>
   ));
 
   const initializeEdit = (person: Person) => {
@@ -71,6 +79,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
           <span className="LastNameHeader">Sukunimi</span>
           <span className="FirstNameHeader">Etunimi</span>
           <span className="AgeHeader">Ikä</span>
+          <span className="emptyspaceHeader"></span>
         </div>
 
         {renderPersons}
