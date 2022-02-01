@@ -34,6 +34,19 @@ app.post("/persons", async (req: Request, res: Response): Promise<any> => {
     res.send(`${res.statusCode} Bad Request: ${error}`);
   }
 });
+app.delete("/persons", async (req: Request, res: Response) => {
+  let person = req.body;
+
+  try {
+    await Connections.delete(person);
+
+    res.statusCode = 204;
+    res.end();
+  } catch (error) {
+    res.statusCode = 404;
+    res.send({ msg: error });
+  }
+});
 
 const server = app.listen(port, (): void => {
   console.log(`Server Running here 👉 https://localhost:${port}`);
