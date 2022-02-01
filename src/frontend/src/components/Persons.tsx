@@ -20,6 +20,9 @@ export const Persons: React.FunctionComponent<{}> = () => {
     ID: 0,
   });
 
+  const [sortState, setSortState] = useState<string>("none");
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
   const fetchAll = async () => {
     try {
       var response = await axios.get<Person[]>("/persons");
@@ -36,8 +39,33 @@ export const Persons: React.FunctionComponent<{}> = () => {
       );
 
       setPersons(temp);
+      console.log(persons);
     } catch (error) {
       alert(error);
+    }
+  };
+
+  const sort = (byThis: string) => {
+    if (byThis === "Youngest") {
+      var temp = [...persons];
+      temp.sort(function (a, b) {
+        return a.Age - b.Age;
+      });
+      setPersons(temp);
+    } else if (byThis === "Oldest") {
+      var temp = [...persons];
+      temp.sort(function (a, b) {
+        return b.Age - a.Age;
+      });
+      setPersons(temp);
+    } else if (byThis === "LastName") {
+      var temp = [...persons];
+      temp.sort((a, b) => a.LastName.localeCompare(b.LastName));
+      setPersons(temp);
+    } else if (byThis === "FirstName") {
+      var temp = [...persons];
+      temp.sort((a, b) => a.FirstName.localeCompare(b.FirstName));
+      setPersons(temp);
     }
   };
 
@@ -77,19 +105,30 @@ export const Persons: React.FunctionComponent<{}> = () => {
   ));
 
   const initializeEdit = (person: Person) => {
+    setSubmitted(false);
     setMessage("Muokkaa tietoja: ");
     setEditable(person);
     setEdit(true);
   };
 
   const initializeAdd = () => {
+    setSubmitted(false);
+
     setMessage("Lisää uusi henkilö tietokantaan");
     setModalOpen(true);
   };
 
   useEffect(() => {
     fetchAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (sortState !== "none") {
+      sort(sortState);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitted]);
   return (
     <>
       {modalOpen && (
@@ -97,6 +136,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
           message={message}
           setModalOpen={setModalOpen}
           fetchAll={fetchAll}
+          setSubmitted={setSubmitted}
         />
       )}
 
@@ -109,7 +149,11 @@ export const Persons: React.FunctionComponent<{}> = () => {
         />
       )}
 
-      <ControlPanel initializeAdd={initializeAdd} />
+      <ControlPanel
+        initializeAdd={initializeAdd}
+        sort={sort}
+        setSortState={setSortState}
+      />
       <div className="PersonList">
         <div className="HeaderContainer">
           {" "}
