@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ControlPanel } from "./ControlPanel";
 import { Modal } from "./Modal";
+import Person from "../Interfaces";
 
 export const Persons: React.FunctionComponent<{}> = () => {
   const [persons, setPersons] = useState<any>([]);
@@ -11,13 +12,12 @@ export const Persons: React.FunctionComponent<{}> = () => {
   const [message, setMessage] = useState<string>(
     "Lisää uusi henkilö tietokantaan"
   );
-
-  interface Person {
-    LastName: string;
-    FirstName: string;
-    Age: number;
-    ID: number;
-  }
+  const [editable, setEditable] = useState<Person>({
+    LastName: "",
+    FirstName: "",
+    Age: 0,
+    ID: 0,
+  });
 
   const fetchAll = async () => {
     try {
@@ -47,24 +47,18 @@ export const Persons: React.FunctionComponent<{}> = () => {
       });
 
       await fetchAll();
-
-      setEdit(false);
     } catch (error) {
       alert(error);
     }
   };
 
   const renderPersons = persons.map((person: Person) => (
-    <span
-      className="Person"
-      title="Klikkaa muokataksesi tai poistaaksesi sana"
-      onClick={() => initializeEdit(person)}
-    >
+    <span className="Person" title="Klikkaa muokataksesi tai poistaaksesi sana">
       <span className="LastName">{person.LastName}</span>
       <span className="FirstName">{person.FirstName}</span>
       <span className="Age">{person.Age}</span>
       <span className="EditButton">
-        <button>
+        <button onClick={() => initializeEdit(person)}>
           <i className="fa fa-pencil"></i>{" "}
         </button>
       </span>
@@ -83,6 +77,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
 
   const initializeEdit = (person: Person) => {
     setMessage("Muokkaa tietoja: ");
+    setEditable(person);
     setEdit(true);
   };
   useEffect(() => {
@@ -94,8 +89,21 @@ export const Persons: React.FunctionComponent<{}> = () => {
         <Modal
           message={message}
           edit={edit}
+          setEdit={setEdit}
           setModalOpen={setModalOpen}
           fetchAll={fetchAll}
+          person={editable}
+        />
+      )}
+
+      {edit && (
+        <Modal
+          message={message}
+          edit={edit}
+          setEdit={setEdit}
+          setModalOpen={setModalOpen}
+          fetchAll={fetchAll}
+          person={editable}
         />
       )}
 
