@@ -48,6 +48,20 @@ app.delete("/persons", async (req: Request, res: Response): Promise<any> => {
   }
 });
 
+app.patch("/persons", async (req: Request, res: Response): Promise<any> => {
+  let person = req.body;
+
+  try {
+    var response = await Connections.editPerson(person);
+
+    res.statusCode = 200;
+    res.end();
+  } catch (error) {
+    res.statusCode = 404;
+    res.send({ msg: error });
+  }
+});
+
 const server = app.listen(port, (): void => {
   console.log(`Server Running here 👉 https://localhost:${port}`);
 });
