@@ -16,6 +16,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
     LastName: string;
     FirstName: string;
     Age: number;
+    ID: number;
   }
 
   const fetchAll = async () => {
@@ -24,11 +25,30 @@ export const Persons: React.FunctionComponent<{}> = () => {
 
       var temp: any = [];
 
-      response.data.forEach(({ LastName, FirstName, Age }) =>
-        temp.push({ LastName: LastName, FirstName: FirstName, Age: Age })
+      response.data.forEach(({ LastName, FirstName, Age, ID }) =>
+        temp.push({
+          LastName: LastName,
+          FirstName: FirstName,
+          Age: Age,
+          ID: ID,
+        })
       );
 
       setPersons(temp);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const handleDelete = async (person: Person) => {
+    try {
+      await axios.delete("/persons", {
+        data: person,
+      });
+
+      await fetchAll();
+
+      setEdit(false);
     } catch (error) {
       alert(error);
     }
@@ -49,7 +69,14 @@ export const Persons: React.FunctionComponent<{}> = () => {
         </button>
       </span>
       <span className="DeleteButton">
-        <button>X</button>
+        <button
+          onClick={() => {
+            window.confirm(`Poista henkilö ${person.FirstName} ? `) &&
+              handleDelete(person);
+          }}
+        >
+          X
+        </button>
       </span>
     </span>
   ));
