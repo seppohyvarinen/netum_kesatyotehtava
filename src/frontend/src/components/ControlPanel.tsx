@@ -1,15 +1,15 @@
 import { useState, Dispatch, SetStateAction } from "react";
 
 interface Props {
-  setModalOpen: Dispatch<SetStateAction<boolean>>;
+  initializeAdd: () => void;
 }
 
 export const ControlPanel: React.FunctionComponent<Props> = ({
-  setModalOpen,
+  initializeAdd,
 }) => {
   return (
     <div className="ControlPanel">
-      <button onClick={() => setModalOpen(true)}>Lisää uusi henkilö</button>
+      <button onClick={() => initializeAdd()}>Lisää uusi henkilö</button>
       <select>
         <option value="" disabled selected>
           Järjestä...

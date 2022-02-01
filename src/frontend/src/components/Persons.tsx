@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ControlPanel } from "./ControlPanel";
 import { Modal } from "./Modal";
+import { EditModal } from "./EditModal";
 import Person from "../Interfaces";
 
 export const Persons: React.FunctionComponent<{}> = () => {
@@ -80,6 +81,12 @@ export const Persons: React.FunctionComponent<{}> = () => {
     setEditable(person);
     setEdit(true);
   };
+
+  const initializeAdd = () => {
+    setMessage("Lisää uusi henkilö tietokantaan");
+    setModalOpen(true);
+  };
+
   useEffect(() => {
     fetchAll();
   }, []);
@@ -88,26 +95,21 @@ export const Persons: React.FunctionComponent<{}> = () => {
       {modalOpen && (
         <Modal
           message={message}
-          edit={edit}
-          setEdit={setEdit}
           setModalOpen={setModalOpen}
           fetchAll={fetchAll}
-          person={editable}
         />
       )}
 
       {edit && (
-        <Modal
+        <EditModal
           message={message}
-          edit={edit}
           setEdit={setEdit}
-          setModalOpen={setModalOpen}
-          fetchAll={fetchAll}
           person={editable}
+          fetchAll={fetchAll}
         />
       )}
 
-      <ControlPanel setModalOpen={setModalOpen} />
+      <ControlPanel initializeAdd={initializeAdd} />
       <div className="PersonList">
         <div className="HeaderContainer">
           {" "}
