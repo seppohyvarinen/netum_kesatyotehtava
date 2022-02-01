@@ -34,7 +34,7 @@ app.post("/persons", async (req: Request, res: Response): Promise<any> => {
     res.send(`${res.statusCode} Bad Request: ${error}`);
   }
 });
-app.delete("/persons", async (req: Request, res: Response) => {
+app.delete("/persons", async (req: Request, res: Response): Promise<any> => {
   let person = req.body;
 
   try {

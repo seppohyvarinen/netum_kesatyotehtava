@@ -44,6 +44,22 @@ let Connections = {
         }
       });
     }),
+  delete: (person: { ID: number }) =>
+    new Promise((resolve, reject) => {
+      pool.query(
+        "delete from Persons where ID = " + pool.escape(person.ID),
+        (err, Persons) => {
+          if (err) {
+            reject("data can't be deleted for some reason, please try again");
+          }
+          if (Persons.affectedRows == 0) {
+            reject("No such word");
+          } else {
+            resolve("Deleted word succesfully");
+          }
+        }
+      );
+    }),
 };
 
 export default Connections;
