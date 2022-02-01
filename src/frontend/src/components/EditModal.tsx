@@ -34,7 +34,18 @@ export const EditModal: React.FunctionComponent<Props> = ({
 
   const handleEdit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(firstName);
+    try {
+      await axios.patch("/persons", {
+        FirstName: firstName,
+        LastName: lastName,
+        Age: age,
+        ID: person.ID,
+      });
+      fetchAll();
+      setEdit(false);
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (

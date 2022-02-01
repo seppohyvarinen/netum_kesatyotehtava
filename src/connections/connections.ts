@@ -74,7 +74,7 @@ let Connections = {
           pool.escape(person.FirstName) +
           ", Age = " +
           pool.escape(person.Age) +
-          "where ID = " +
+          " where ID = " +
           pool.escape(person.ID),
         (err, Persons) => {
           if (err) {

@@ -51,6 +51,8 @@ app.delete("/persons", async (req: Request, res: Response): Promise<any> => {
 app.patch("/persons", async (req: Request, res: Response): Promise<any> => {
   let person = req.body;
 
+  console.log(person);
+
   try {
     var response = await Connections.editPerson(person);
 
