@@ -20,12 +20,16 @@ export const Persons: React.FunctionComponent<{}> = () => {
     ID: 0,
   });
 
-  const [sortState, setSortState] = useState<string>("none");
+  const [sortState, setSortState] = useState<string>("LastName");
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const fetchAll = async () => {
     try {
-      var response = await axios.get<Person[]>("/persons");
+      var response = await axios.get<Person[]>("/persons", {
+        params: {
+          sortBy: sortState,
+        },
+      });
 
       var temp: any = [];
 
