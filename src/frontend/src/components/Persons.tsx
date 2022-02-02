@@ -22,6 +22,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
   });
 
   const [sortState, setSortState] = useState<string>("LastName");
+  const [delete, setDelete] = useState<boolean>(false);
 
   const fetchAll = async () => {
     try {
