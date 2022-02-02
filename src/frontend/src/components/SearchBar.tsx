@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface Props {
   filterPersons: (filterBy: string) => void;
@@ -8,6 +8,11 @@ export const SearchBar: React.FunctionComponent<Props> = ({
   filterPersons,
 }) => {
   const [searchParams, setSearchParams] = useState<string>("");
+
+  useEffect(() => {
+    filterPersons(searchParams);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
