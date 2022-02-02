@@ -48,18 +48,17 @@ with also min value defined. Uses grid to place grid items*/
 
 .ControlPanel {
   margin-top: 20px;
-  max-width: 60vh;
-  min-width: 200px;
+  width: 55vw;
+  min-width: 250px;
 
   height: 5vh;
   min-height: 50px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 1vw;
-  padding: 10px;
 }
 
 .AddBtn button {
@@ -313,10 +312,6 @@ Media queries for smaller screens.
   .PanelContainer h1 {
     font-size: large;
   }
-
-  .ControlPanel {
-    min-width: 150px;
-  }
 }
 
 @media only screen and (max-width: 330px) {
@@ -329,5 +324,16 @@ Media queries for smaller screens.
 
   .PanelContainer h1 {
     font-size: medium;
+  }
+
+  .ControlPanel {
+    font-size: small;
+  }
+  .Searchbar {
+    min-width: 90px;
+  }
+
+  .Modal {
+    min-width: 300px;
   }
 }
