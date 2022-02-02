@@ -15,10 +15,15 @@ export const DeleteModal: React.FunctionComponent<Props> = ({
   return (
     <div className="modalBG">
       <div className="deleteModal">
-        Haluatko varmasti poistaa henkilön {deleteThis.FirstName}{" "}
-        {deleteThis.LastName} tietokannasta?
-        <button onClick={() => handleDelete(deleteThis)}>Kyllä</button>
-        <button onClick={() => setDeleteModal(false)}>Peruuta</button>
+        <div className="deleteText">
+          {" "}
+          Haluatko varmasti poistaa henkilön {deleteThis.FirstName}{" "}
+          {deleteThis.LastName} tietokannasta?
+        </div>
+        <div className="deleteModalButtons">
+          <button onClick={() => handleDelete(deleteThis)}>Kyllä</button>
+          <button onClick={() => setDeleteModal(false)}>Peruuta</button>
+        </div>
       </div>
     </div>
   );

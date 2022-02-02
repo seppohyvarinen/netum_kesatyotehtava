@@ -294,13 +294,15 @@ Below are placement and style definitions for all buttons and inputs in the moda
   justify-content: space-between;
 }
 
-.deleteModal {
-  width: 40vw;
-  max-width: 350px;
-  height: 20vh;
-  min-height: 200px;
+/*
+CSS for modal area that is displayed when a Person object is being deleted.
+Uses grid for placement purposes.
+*/
 
-  min-width: 350px;
+.deleteModal {
+  width: 350px;
+  height: 200px;
+
   border-radius: 20px;
   background-image: linear-gradient(rgb(176, 240, 246), rgb(218, 205, 253));
 
@@ -309,6 +311,29 @@ Below are placement and style definitions for all buttons and inputs in the moda
   text-align: center;
   box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset;
+
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "1"
+    "2";
+
+  grid-gap: 2vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteText {
+  grid-area: 1;
+}
+
+.deleteModalButtons {
+  grid-area: 2;
+}
+
+.deleteModalButtons button {
+  margin: 10px;
 }
 
 /*
