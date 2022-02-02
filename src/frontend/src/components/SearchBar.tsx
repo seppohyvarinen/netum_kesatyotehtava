@@ -37,7 +37,7 @@ export const SearchBar: React.FunctionComponent<Props> = ({
           onChange={handleChange}
           value={searchParams}
         />
-        <button type="submit">Search</button>
+        <button type="submit">Etsi</button>
       </form>
     </div>
   );
