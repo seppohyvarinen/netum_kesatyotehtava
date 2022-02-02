@@ -85,7 +85,7 @@ export const EditModal: React.FunctionComponent<Props> = ({
             </div>
           </div>
           <div className="ModalBtns">
-            <button type="submit">Lisää</button>
+            <button type="submit">Päivitä</button>
             <button onClick={() => setEdit(false)}>Peruuta</button>
           </div>
         </form>
