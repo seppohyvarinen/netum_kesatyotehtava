@@ -93,6 +93,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
       });
 
       await fetchAll();
+      setDeleteModal(false);
     } catch (error) {
       alert(error);
     }
@@ -155,7 +156,11 @@ export const Persons: React.FunctionComponent<{}> = () => {
       )}
 
       {deleteModal && (
-        <DeleteModal deleteThis={editable} handleDelete={handleDelete} />
+        <DeleteModal
+          deleteThis={editable}
+          handleDelete={handleDelete}
+          setDeleteModal={setDeleteModal}
+        />
       )}
 
       <ControlPanel
