@@ -7,6 +7,7 @@ import Person from "../Interfaces";
 
 export const Persons: React.FunctionComponent<{}> = () => {
   const [persons, setPersons] = useState<any>([]);
+  const [filtPersons, setFiltPersons] = useState<any>([]);
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [edit, setEdit] = useState<boolean>(false);
@@ -42,7 +43,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
       );
 
       setPersons(temp);
-      console.log(persons);
+      setFiltPersons(temp);
     } catch (error) {
       alert(error);
     }
@@ -84,7 +85,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
     }
   };
 
-  const renderPersons = persons.map((person: Person) => (
+  const renderPersons = filtPersons.map((person: Person) => (
     <span className="Person" title="Klikkaa muokataksesi tai poistaaksesi sana">
       <span className="LastName">{person.LastName}</span>
       <span className="FirstName">{person.FirstName}</span>
