@@ -12,6 +12,12 @@ app.use(cors());
 app.use(express.static("src/frontend/build"));
 app.use(express.json());
 
+/**
+ * Async get function that calls the database function to fetch all persons from the database.
+ * When succesfull, the response containing all the persons is sent as res.send to the frontend.
+ * If it fails, statuscode 404 is sent to the frontend.
+ */
+
 app.get("/persons", async (req: Request, res: Response): Promise<any> => {
   let sort = req.query.sortBy;
 
@@ -23,6 +29,12 @@ app.get("/persons", async (req: Request, res: Response): Promise<any> => {
     res.send(error);
   }
 });
+
+/**
+ * Async post function that calls the database function to save a new person to the database.
+ * When succesful, statuscode 201 is sent to the frontend.
+ * If it fails, statuscode 404 is sent to the frontend.
+ */
 
 app.post("/persons", async (req: Request, res: Response): Promise<any> => {
   let tmp = req.body;
@@ -36,6 +48,12 @@ app.post("/persons", async (req: Request, res: Response): Promise<any> => {
     res.send(`${res.statusCode} Bad Request: ${error}`);
   }
 });
+
+/**
+ * Async delete function that calls the database function to delete a person from the database.
+ * When succesful, statuscode 204 is sent to the frontend.
+ * If it fails, statuscode 404 is sent to the frontend.
+ */
 app.delete("/persons", async (req: Request, res: Response): Promise<any> => {
   let person = req.body;
 
@@ -49,6 +67,12 @@ app.delete("/persons", async (req: Request, res: Response): Promise<any> => {
     res.send({ msg: error });
   }
 });
+
+/**
+ * Async post function that calls the database function to edit a person in the database.
+ * When succesful, statuscode 201 is sent to the frontend.
+ * If it fails, statuscode 404 is sent to the frontend.
+ */
 
 app.patch("/persons", async (req: Request, res: Response): Promise<any> => {
   let person = req.body;
