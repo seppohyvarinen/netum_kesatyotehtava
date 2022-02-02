@@ -49,6 +49,16 @@ export const Persons: React.FunctionComponent<{}> = () => {
     }
   };
 
+  const FilterPersons = (filterBy: string) => {
+    const filtered = persons.filter((person: Person) => {
+      return (
+        person.FirstName.toLowerCase().includes(filterBy.toLowerCase()) ||
+        person.LastName.toLowerCase().includes(filterBy.toLowerCase())
+      );
+    });
+    setFiltPersons(filtered);
+  };
+
   const sort = (byThis: string) => {
     if (byThis === "Age Asc") {
       var temp = [...persons];
