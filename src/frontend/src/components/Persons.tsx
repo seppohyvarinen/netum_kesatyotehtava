@@ -4,6 +4,7 @@ import { ControlPanel } from "./ControlPanel";
 import { Modal } from "./Modal";
 import { EditModal } from "./EditModal";
 import Person from "../Interfaces";
+import { DeleteModal } from "./DeleteModal";
 
 export const Persons: React.FunctionComponent<{}> = () => {
   const [persons, setPersons] = useState<any>([]);
@@ -22,7 +23,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
   });
 
   const [sortState, setSortState] = useState<string>("LastName");
-  const [delete, setDelete] = useState<boolean>(false);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
 
   const fetchAll = async () => {
     try {
@@ -154,6 +155,8 @@ export const Persons: React.FunctionComponent<{}> = () => {
           fetchAll={fetchAll}
         />
       )}
+
+      {deleteModal && <DeleteModal handleDelete={handleDelete} />}
 
       <ControlPanel
         initializeAdd={initializeAdd}
