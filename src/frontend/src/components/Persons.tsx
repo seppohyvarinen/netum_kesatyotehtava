@@ -109,14 +109,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
         </button>
       </span>
       <span className="DeleteButton">
-        <button
-          onClick={() => {
-            window.confirm(`Poista henkilö ${person.FirstName} ? `) &&
-              handleDelete(person);
-          }}
-        >
-          X
-        </button>
+        <button onClick={() => initializeDelete(person)}>X</button>
       </span>
     </span>
   ));
@@ -130,6 +123,11 @@ export const Persons: React.FunctionComponent<{}> = () => {
   const initializeAdd = () => {
     setMessage("Lisää uusi henkilö tietokantaan");
     setModalOpen(true);
+  };
+
+  const initializeDelete = (person: Person) => {
+    setEditable(person);
+    setDeleteModal(true);
   };
 
   useEffect(() => {
@@ -156,7 +154,9 @@ export const Persons: React.FunctionComponent<{}> = () => {
         />
       )}
 
-      {deleteModal && <DeleteModal handleDelete={handleDelete} />}
+      {deleteModal && (
+        <DeleteModal deleteThis={editable} handleDelete={handleDelete} />
+      )}
 
       <ControlPanel
         initializeAdd={initializeAdd}
