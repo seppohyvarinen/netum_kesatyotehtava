@@ -60,24 +60,25 @@ export const Persons: React.FunctionComponent<{}> = () => {
   };
 
   const sort = (byThis: string) => {
+    var temp = [];
     if (byThis === "Age Asc") {
-      var temp = [...persons];
+      temp = [...persons];
       temp.sort(function (a, b) {
         return a.Age - b.Age;
       });
       setFiltPersons(temp);
     } else if (byThis === "Age Desc") {
-      var temp = [...persons];
+      temp = [...persons];
       temp.sort(function (a, b) {
         return b.Age - a.Age;
       });
       setFiltPersons(temp);
     } else if (byThis === "LastName") {
-      var temp = [...persons];
+      temp = [...persons];
       temp.sort((a, b) => a.LastName.localeCompare(b.LastName));
       setFiltPersons(temp);
     } else if (byThis === "FirstName") {
-      var temp = [...persons];
+      temp = [...persons];
       temp.sort((a, b) => a.FirstName.localeCompare(b.FirstName));
       setFiltPersons(temp);
     }
