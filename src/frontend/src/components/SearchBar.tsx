@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-export const SearchBar: React.FunctionComponent<{}> = () => {
+interface Props {
+  filterPersons: (filterBy: string) => void;
+}
+
+export const SearchBar: React.FunctionComponent<Props> = ({
+  filterPersons,
+}) => {
   const [searchParams, setSearchParams] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

@@ -157,6 +157,7 @@ export const Persons: React.FunctionComponent<{}> = () => {
         initializeAdd={initializeAdd}
         sort={sort}
         setSortState={setSortState}
+        filterPersons={FilterPersons}
       />
       <div className="PersonList">
         <div className="HeaderContainer">

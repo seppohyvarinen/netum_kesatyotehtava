@@ -7,6 +7,7 @@ interface Props {
   setSortState: Dispatch<SetStateAction<string>>;
 
   sort: (byThis: string) => void;
+  filterPersons: (filterBy: string) => void;
 }
 
 export const ControlPanel: React.FunctionComponent<Props> = ({
@@ -14,6 +15,7 @@ export const ControlPanel: React.FunctionComponent<Props> = ({
 
   sort,
   setSortState,
+  filterPersons,
 }) => {
   const handleSort = (e: React.FormEvent<HTMLSelectElement>) => {
     let targetValue = e.currentTarget.value;
@@ -38,7 +40,7 @@ export const ControlPanel: React.FunctionComponent<Props> = ({
         </select>
       </div>
 
-      <SearchBar />
+      <SearchBar filterPersons={filterPersons} />
     </div>
   );
 };
