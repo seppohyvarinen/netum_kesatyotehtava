@@ -6,6 +6,11 @@ import { EditModal } from "./EditModal";
 import Person from "../Interfaces";
 import { DeleteModal } from "./DeleteModal";
 
+/**
+ * Persons component holds the persons list that is in the frontend and most of the functions used in the app for managing the list.
+ * @returns conditionally Modals for deleting, adding and editing persons, also ControlPanel component and the list of persons.
+ */
+
 export const Persons: React.FunctionComponent<{}> = () => {
   const [persons, setPersons] = useState<any>([]);
   const [filtPersons, setFiltPersons] = useState<any>([]);
@@ -24,6 +29,11 @@ export const Persons: React.FunctionComponent<{}> = () => {
 
   const [sortState, setSortState] = useState<string>("LastName");
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
+
+  /**
+   * Async function that fetches all the persons with axios.get to the frontend.
+   * Uses sortState in the request params to fetch correctly sorted list.
+   */
 
   const fetchAll = async () => {
     try {
@@ -51,6 +61,11 @@ export const Persons: React.FunctionComponent<{}> = () => {
     }
   };
 
+  /**
+   * This function handles the filtering according to what is written in the searchbar.
+   * @param filterBy is a string that the list filtering is done by.
+   */
+
   const FilterPersons = (filterBy: string) => {
     const filtered = persons.filter((person: Person) => {
       return (
@@ -60,6 +75,12 @@ export const Persons: React.FunctionComponent<{}> = () => {
     });
     setFiltPersons(filtered);
   };
+
+  /**
+   * This function handles the sorting of the list. User can sort the list
+   * according to lastname, firstname and age.
+   * @param byThis is string that serves as condition as how the sorting should be done.
+   */
 
   const sort = (byThis: string) => {
     var temp = [];
@@ -86,6 +107,11 @@ export const Persons: React.FunctionComponent<{}> = () => {
     }
   };
 
+  /**
+   * This async function handles the deleting from the database.
+   * @param person contains Person object that is sent with the request to teh backend
+   */
+
   const handleDelete = async (person: Person) => {
     try {
       await axios.delete("/persons", {
@@ -98,6 +124,12 @@ export const Persons: React.FunctionComponent<{}> = () => {
       alert(error);
     }
   };
+
+  /**
+   * This function handles the rendering of the persons list to the screen.
+   * It maps the persons list to divs that have styling and also the divs contain buttons that
+   * call functions for editing and deleting.
+   */
 
   const renderPersons = filtPersons.map((person: Person) => (
     <span className="Person" title="Klikkaa muokataksesi tai poistaaksesi sana">
@@ -115,21 +147,43 @@ export const Persons: React.FunctionComponent<{}> = () => {
     </span>
   ));
 
+  /**
+   * This function initializes editing by setting desired Person to editable state that is sent to the EditModal.
+   * It also sets the setEdit true which will enable rendering of the EditModal.
+   * @param person is the Person that is to be edited
+   */
+
   const initializeEdit = (person: Person) => {
     setMessage("Muokkaa tietoja: ");
     setEditable(person);
     setEdit(true);
   };
 
+  /**
+   * This function initializes adding a person.
+   * It sets the setModalOpen true which will enable rendering of the Modal.
+   *
+   */
+
   const initializeAdd = () => {
     setMessage("Lisää uusi henkilö tietokantaan");
     setModalOpen(true);
   };
 
+  /**
+   * This function initializes deleting by setting desired Person to editable state that is sent to the DeleteModal.
+   * It also sets the setEdit true which will enable rendering of the DeleteModal.
+   * @param person is the Person that is to be deleted
+   */
+
   const initializeDelete = (person: Person) => {
     setEditable(person);
     setDeleteModal(true);
   };
+
+  /**
+   * This function uses useEffect that calls fetchAll function to fetch all persons as the component is loaded.
+   */
 
   useEffect(() => {
     fetchAll();
