@@ -17,16 +17,13 @@ var pool = mysql.createPool(config);
 let Connections = {
   findAll: (sort: any) =>
     new Promise<mysql.Connection>((resolve, reject) => {
-      pool.query(
-        "select * from Persons order by " + pool.escape(sort),
-        (err, words) => {
-          if (err) {
-            reject("Something went wrong with fetching data, please try again");
-          } else {
-            resolve(words);
-          }
+      pool.query("select * from Persons order by " + sort, (err, words) => {
+        if (err) {
+          reject("Something went wrong with fetching data, please try again");
+        } else {
+          resolve(words);
         }
-      );
+      });
     }),
   save: (person: { LastName: string; FirstName: string; Age: number }) =>
     new Promise((resolve, reject) => {
