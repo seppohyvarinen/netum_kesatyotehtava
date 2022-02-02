@@ -13,8 +13,10 @@ app.use(express.static("src/frontend/build"));
 app.use(express.json());
 
 app.get("/persons", async (req: Request, res: Response): Promise<any> => {
+  let sort = req.query.sortBy;
+
   try {
-    let all = await Connections.findAll();
+    let all = await Connections.findAll(sort);
     res.send(all);
   } catch (error) {
     res.statusCode = 404;
