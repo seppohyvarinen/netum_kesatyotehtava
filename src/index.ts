@@ -9,7 +9,7 @@ const port = 3000;
 
 app.use(cors());
 
-app.use(express.static("src/frontend/build"));
+app.use(express.static("../src/frontend/build"));
 app.use(express.json());
 
 /**
