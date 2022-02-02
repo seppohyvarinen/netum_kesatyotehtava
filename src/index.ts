@@ -5,7 +5,7 @@ import Connections from "./connections/connections";
 import cors from "cors";
 
 const app: Application = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -90,6 +90,4 @@ app.patch("/persons", async (req: Request, res: Response): Promise<any> => {
   }
 });
 
-const server = app.listen(port, (): void => {
-  console.log(`Server Running here 👉 https://localhost:${port}`);
-});
+const server = app.listen(port, (): void => {});
