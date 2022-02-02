@@ -28,8 +28,8 @@ export const ControlPanel: React.FunctionComponent<Props> = ({
         </option>
         <option value="LastName">Sukunimi</option>
         <option value="FirstName">Etunimi</option>
-        <option value="Youngest">Ikä - nuorin</option>
-        <option value="Oldest">Ikä - vanhin</option>
+        <option value="Age Asc">Ikä - nuorin</option>
+        <option value="Age Desc">Ikä - vanhin</option>
       </select>
     </div>
   );

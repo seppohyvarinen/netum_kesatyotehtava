@@ -21,7 +21,6 @@ export const Persons: React.FunctionComponent<{}> = () => {
   });
 
   const [sortState, setSortState] = useState<string>("LastName");
-  const [submitted, setSubmitted] = useState<boolean>(false);
 
   const fetchAll = async () => {
     try {
@@ -50,13 +49,13 @@ export const Persons: React.FunctionComponent<{}> = () => {
   };
 
   const sort = (byThis: string) => {
-    if (byThis === "Youngest") {
+    if (byThis === "Age Asc") {
       var temp = [...persons];
       temp.sort(function (a, b) {
         return a.Age - b.Age;
       });
       setPersons(temp);
-    } else if (byThis === "Oldest") {
+    } else if (byThis === "Age Desc") {
       var temp = [...persons];
       temp.sort(function (a, b) {
         return b.Age - a.Age;
@@ -109,15 +108,12 @@ export const Persons: React.FunctionComponent<{}> = () => {
   ));
 
   const initializeEdit = (person: Person) => {
-    setSubmitted(false);
     setMessage("Muokkaa tietoja: ");
     setEditable(person);
     setEdit(true);
   };
 
   const initializeAdd = () => {
-    setSubmitted(false);
-
     setMessage("Lisää uusi henkilö tietokantaan");
     setModalOpen(true);
   };
@@ -127,12 +123,6 @@ export const Persons: React.FunctionComponent<{}> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (sortState !== "none") {
-      sort(sortState);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [submitted]);
   return (
     <>
       {modalOpen && (
@@ -140,7 +130,6 @@ export const Persons: React.FunctionComponent<{}> = () => {
           message={message}
           setModalOpen={setModalOpen}
           fetchAll={fetchAll}
-          setSubmitted={setSubmitted}
         />
       )}
 

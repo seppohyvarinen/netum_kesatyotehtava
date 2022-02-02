@@ -3,7 +3,7 @@ import axios from "axios";
 
 interface Props {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
-  setSubmitted: Dispatch<SetStateAction<boolean>>;
+
   message: string;
   fetchAll: () => void;
 }
@@ -12,7 +12,6 @@ export const Modal: React.FunctionComponent<Props> = ({
   setModalOpen,
   message,
   fetchAll,
-  setSubmitted,
 }) => {
   const [lastName, setLastName] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -44,7 +43,6 @@ export const Modal: React.FunctionComponent<Props> = ({
       setAge(0);
       setModalOpen(false);
       fetchAll();
-      setSubmitted(true);
     } catch (error) {
       alert(error);
     }
