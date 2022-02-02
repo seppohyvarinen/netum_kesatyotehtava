@@ -1,4 +1,5 @@
 import { useState, Dispatch, SetStateAction } from "react";
+import { SearchBar } from "./SearchBar";
 
 interface Props {
   initializeAdd: () => void;
@@ -31,6 +32,7 @@ export const ControlPanel: React.FunctionComponent<Props> = ({
         <option value="Age Asc">Ikä - nuorin</option>
         <option value="Age Desc">Ikä - vanhin</option>
       </select>
+      <SearchBar />
     </div>
   );
 };
