@@ -36,7 +36,7 @@
 
 .ControlPanel {
   margin-top: 20px;
-  width: 40vh;
+  max-width: 60vh;
   min-width: 200px;
 
   height: 5vh;
@@ -44,19 +44,23 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 1vw;
+  padding: 10px;
 }
 
-.ControlPanel select {
-  float: right;
-}
-
-.ControlPanel button {
-  float: left;
+.AddBtn button {
   background-color: greenyellow;
   color: white;
   box-shadow: rgba(0, 0, 0, 0.17) 0px -5px 5px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -10px 10px 0px inset,
     0 0 0 0 rgba(232, 240, 128, 0.007);
+}
+
+.Searchbar {
+  width: 8vw;
+  min-width: 100px;
 }
 
 /* width */
