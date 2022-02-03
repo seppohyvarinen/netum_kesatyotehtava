@@ -2,6 +2,8 @@
 
 T 2.3 Fullstack-sovellus
 
+Pyörimässä herokussa: https://summer-job-preassignment-netum.herokuapp.com/
+
 Kyseessä on siis fullstack sovellus, jossa on käytetty Node.js & Typescriptiä backendissa
 (sekä Mysql tietokantaa) ja React & Typescript komboa frontendissa. 
 Sovelluksesta löytyy ominaisuudet lisätä, poistaa sekä muokata listalla olevia henkilöitä. Henkilöitä pystyy
